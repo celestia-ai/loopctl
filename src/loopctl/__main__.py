@@ -7,6 +7,14 @@ from itllib.resources import ResourcePile
 class Commander:
     def apply(self, *files, resources="./loop-resources", secrets="./loop-secrets"):
         """Apply the configuration in the given files."""
+        if (
+            resources.startswith("http:")
+            or resources.startswith("https:")
+            or secrets.startswith("http:")
+            or secrets.startswith("https:")
+        ):
+            raise ValueError("The resources and secrets paths cannot be urls.")
+
         resources_path = os.path.realpath(resources)
         secrets_path = os.path.realpath(secrets)
 
