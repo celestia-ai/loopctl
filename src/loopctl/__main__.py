@@ -91,10 +91,7 @@ def _delete_cluster_resource(client, cluster, resources_path, secrets_path, file
         kind = data["kind"]
         name = data["metadata"]["name"]
         fiber = data["metadata"].get("fiber", "resource")
-        remote = data["metadata"].get("remote")
-
-        if remote == None:
-            cluster_id = itl.get_resource("Cluster", cluster).id
+        cluster_id = itl.get_resource("Cluster", cluster).id
 
         task = itl.cluster_delete(
             cluster, group, version, kind, name, fiber, cluster_id
@@ -124,10 +121,7 @@ def _get_cluster_resource(client, cluster, resources_path, secrets_path, files):
         kind = data["kind"]
         name = data["metadata"]["name"]
         fiber = data["metadata"].get("fiber", "resource")
-        remote = data["metadata"].get("remote")
-
-        if remote == None:
-            cluster_id = itl.get_resource("Cluster", cluster).id
+        cluster_id = itl.get_resource("Cluster", cluster).id
 
         task = read_resource(
             itl, cluster, group, version, kind, name, fiber, cluster_id
